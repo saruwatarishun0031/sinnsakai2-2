@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Player4 : MonoBehaviour
+public class Player4
+    : MonoBehaviour
 {
     private Rigidbody _rb;
     [SerializeField, Tooltip("‹ó‚ÌƒCƒ[ƒW")]
@@ -141,8 +142,8 @@ public class Player4 : MonoBehaviour
 
     public void Death()
     {
-        this.gameObject.GetComponent<Player>().enabled = false;//“®‚¢‚Ä—~‚µ‚­‚È‚¢
-        Destroy(this.gameObject, 1.7f);
+        gameObject.GetComponent<Player4>().enabled = false;//“®‚¢‚Ä—~‚µ‚­‚È‚¢
+        Destroy(gameObject, 1.7f);
         _Death = true;
     }
 }

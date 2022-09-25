@@ -97,28 +97,28 @@ public class GameManager : MonoBehaviour
         Observer observer4 = new Observer("Player4");
         Observable observable = new Observable();
         IDisposable disposable1 = observable.Subscribe(observer1);
-        if (player1.GetComponent<Player>().p == 3)
+        if (Player1.p == 3)
         {
             observable.SendNotice();
             _Text.enabled = true;
             StartCoroutine(Tuuti());
         }
         IDisposable disposable2 = observable.Subscribe(observer2);
-        if (player2.GetComponent<Player2>().p == 3)
+        if (Player2.p == 3)
         {
             observable.SendNotice();
             _Text.enabled = true;
             StartCoroutine(Tuuti());
         }
         IDisposable disposable3 = observable.Subscribe(observer3);
-        if (player3.GetComponent<Player3>().p == 3)
+        if (Player3.p == 3)
         {
             observable.SendNotice();
             _Text.enabled = true;
             StartCoroutine(Tuuti());
         }
         IDisposable disposable4 = observable.Subscribe(observer4);
-        if (player4.GetComponent<Player4>().p == 3)
+        if (Player4.p == 3)
         {
             observable.SendNotice();
             _Text.enabled = true;
@@ -130,38 +130,38 @@ public class GameManager : MonoBehaviour
     {
         int PlayerCount = PlayerList.Count;
         Debug.Log(PlayerCount);
-        if (player1.GetComponent<Player>()._Death == true)
+        if (Player1._Death == true)
         {
             PlayerList.Remove("Player1");
         }
-        else if (player2.GetComponent<Player2>()._Death == true)
+        else if (Player2._Death == true)
         {
             PlayerList.Remove("Player2");
         }
-        else if (player3.GetComponent<Player3>()._Death == true)
+        else if (Player3._Death == true)
         {
             PlayerList.Remove("Player3");
         }
-        else if (player4.GetComponent<Player4>()._Death == true)
+        else if (Player4._Death == true)
         {
             PlayerList.Remove("Player4");
         }
 
         if (PlayerCount ==1)
         {
-            if (player1.GetComponent<Player>()._Death == false)
+            if (Player1._Death == false)
             {
                 _WinPlayer.text = "Player1";
             }
-            else if (player2.GetComponent<Player2>()._Death == false)
+            else if (Player2._Death == false)
             {
                 _WinPlayer.text = "Player2";
             }
-            else if (player3.GetComponent<Player3>()._Death == false)
+            else if (Player3._Death == false)
             {
                 _WinPlayer.text = "Player3";
             }
-            else if (player4.GetComponent<Player4>()._Death == false)
+            else if (Player4._Death == false)
             {
                 _WinPlayer.text = "Player4";
             }

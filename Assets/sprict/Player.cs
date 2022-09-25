@@ -141,8 +141,8 @@ public class Player : MonoBehaviour
 
     public void Death()
     {
-        this.gameObject.GetComponent<Player>().enabled = false;//“®‚¢‚Ä—~‚µ‚­‚È‚¢
-        Destroy(this.gameObject, 1.7f);
+        gameObject.GetComponent<Player>().enabled = false;//“®‚¢‚Ä—~‚µ‚­‚È‚¢
+        Destroy(gameObject, 1.7f);
         _Death = true;
     }
 }
