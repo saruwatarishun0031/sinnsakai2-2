@@ -27,9 +27,11 @@ public class Player4
     public float _MaxGetTime;
     public float speed = 1000;
     public float _interval = 3;
-    public int NumberOfBullets;
+    public int NumberOfBullets4;
     const int winNum = 5;
     public int p;
+    public bool p3;
+    public bool p4;
     //シングルトンパターン（簡易型、呼び出される）
     public static Player4 Instance;
 
@@ -52,7 +54,7 @@ public class Player4
         point1 = pointParent.GetComponentsInChildren<Image>();
         p = 0;
         _getTime = 0;
-        NumberOfBullets = 6;
+        NumberOfBullets4 = 6;
         _Death = false;
 
     }
@@ -63,6 +65,7 @@ public class Player4
     {
         Move();
         Attke();
+        Point();
         _interval -= Time.deltaTime;
     }
 
@@ -87,7 +90,7 @@ public class Player4
 
     void Attke()
     {
-        if (Input.GetButtonDown("Fire1111") && NumberOfBullets >= 1 && _interval <= 0)
+        if (Input.GetButtonDown("shooting 4") && NumberOfBullets4 >= 1 && _interval <= 0)
         {
 
             // 弾丸の複製
@@ -102,19 +105,30 @@ public class Player4
 
             // 弾丸の位置を調整
             bullets.transform.position = muzzle.position;
-            NumberOfBullets -= 1;
+            NumberOfBullets4 -= 1;
             _interval = 2;
         }
-        else if (Input.GetButtonDown("Fire2222"))
+        else if (Input.GetButtonDown("reload4"))
         {
-            NumberOfBullets = 6;
+            NumberOfBullets4 = 6;
             _interval = 4;
+        }
+    }
+    void Point()
+    {
+        if (p == 3)
+        {
+            p3 = true;
+        }
+        else if (p == 4)
+        {
+            p4 = true;
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (Input.GetButton("Fire3333") && other.gameObject.tag == "Point")
+        if (Input.GetButton("Get4") && other.gameObject.tag == "Point")
         {
             _pointSlider.gameObject.SetActive(true);
             _getTime += Time.deltaTime;

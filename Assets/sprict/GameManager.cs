@@ -103,7 +103,7 @@ public class GameManager : MonoBehaviour
         //    _Text.enabled = true;
         //    StartCoroutine(Tuuti());
         //}
-        if (Player.Instance.p == 3)
+        if (Player.Instance.p3 == true)
         {
             observable.SendNotice();
             _Text.enabled = true;
@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour
         //    _Text.enabled = true;
         //    StartCoroutine(Tuuti());
         //}
-        if (Player2.Instance.p == 3)
+        if (Player2.Instance.p3 == true)
         {
             observable.SendNotice();
             _Text.enabled = true;
@@ -129,7 +129,7 @@ public class GameManager : MonoBehaviour
         //    _Text.enabled = true;
         //    StartCoroutine(Tuuti());
         //}
-        if (Player3.Instance.p == 3)
+        if (Player3.Instance.p3 == true)
         {
             observable.SendNotice();
             _Text.enabled = true;
@@ -142,7 +142,7 @@ public class GameManager : MonoBehaviour
         //    _Text.enabled = true;
         //    StartCoroutine(Tuuti());
         //}
-        if (Player4.Instance.p == 3)
+        if (Player4.Instance.p3 == true)
         {
             observable.SendNotice();
             _Text.enabled = true;
@@ -233,6 +233,14 @@ public class GameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(timeOut);
             _Text.enabled = false;
+            Player.Instance.p3 = false;
+            Player.Instance.p4 = false;
+            Player2.Instance.p3 = false;
+            Player2.Instance.p4 = false;
+            Player3.Instance.p3 = false;
+            Player3.Instance.p4 = false;
+            Player4.Instance.p3 = false;
+            Player4.Instance.p4 = false;
         }
     }
 
@@ -243,19 +251,19 @@ public class GameManager : MonoBehaviour
         _Win.gameObject.SetActive(true);
         if (Player.Instance.p == 5)
         {
-            _WinPlayer.text = "Player1";
+            _WinPlayer.text = "èüé“"+"Player1";
         }
         else if (Player2.Instance.p == 5)
         {
-            _WinPlayer.text = "Player2";
+            _WinPlayer.text = "èüé“" + "Player2";
         }
         else if (Player3.Instance.p == 5)
         {
-            _WinPlayer.text = "Player3";
+            _WinPlayer.text = "èüé“" + "Player3";
         }
         else if (Player4.Instance.p == 5)
         {
-            _WinPlayer.text = "Player4";
+            _WinPlayer.text = "èüé“" + "Player4";
         }
     }
 }

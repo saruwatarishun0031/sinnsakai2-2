@@ -438,7 +438,7 @@ InputManager:
     axis: 2
     joyNum: 4
   - serializedVersion: 3
-    m_Name: Fire1
+    m_Name: shooting 1
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -454,7 +454,7 @@ InputManager:
     axis: 9
     joyNum: 1
   - serializedVersion: 3
-    m_Name: Fire11
+    m_Name: shooting 2
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -470,7 +470,7 @@ InputManager:
     axis: 9
     joyNum: 2
   - serializedVersion: 3
-    m_Name: Fire111
+    m_Name: shooting 3
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -486,7 +486,7 @@ InputManager:
     axis: 9
     joyNum: 3
   - serializedVersion: 3
-    m_Name: Fire1111
+    m_Name: shooting 4
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -502,7 +502,7 @@ InputManager:
     axis: 9
     joyNum: 4
   - serializedVersion: 3
-    m_Name: Fire2
+    m_Name: reload1
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -518,7 +518,7 @@ InputManager:
     axis: 0
     joyNum: 1
   - serializedVersion: 3
-    m_Name: Fire22
+    m_Name: reload2
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -534,7 +534,7 @@ InputManager:
     axis: 0
     joyNum: 2
   - serializedVersion: 3
-    m_Name: Fire222
+    m_Name: reload3
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -550,7 +550,7 @@ InputManager:
     axis: 0
     joyNum: 3
   - serializedVersion: 3
-    m_Name: Fire2222
+    m_Name: reload4
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -566,7 +566,7 @@ InputManager:
     axis: 0
     joyNum: 4
   - serializedVersion: 3
-    m_Name: Fire3
+    m_Name: Get1
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -582,7 +582,7 @@ InputManager:
     axis: 0
     joyNum: 1
   - serializedVersion: 3
-    m_Name: Fire33
+    m_Name: Get2
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -598,7 +598,7 @@ InputManager:
     axis: 0
     joyNum: 2
   - serializedVersion: 3
-    m_Name: Fire333
+    m_Name: Get3
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -614,7 +614,7 @@ InputManager:
     axis: 0
     joyNum: 3
   - serializedVersion: 3
-    m_Name: Fire3333
+    m_Name: Get4
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 

@@ -26,9 +26,11 @@ public class Player2 : MonoBehaviour
     public float _MaxGetTime;
     public float speed = 1000;
     public float _interval = 3;
-    public int NumberOfBullets;
+    public int NumberOfBullets2;
     const int winNum = 5;
     public int p;
+    public bool p3;
+    public bool p4;
     //シングルトンパターン（簡易型、呼び出される）
     public static Player2 Instance;
 
@@ -51,7 +53,7 @@ public class Player2 : MonoBehaviour
         point1 = pointParent.GetComponentsInChildren<Image>();
         p = 0;
         _getTime = 0;
-        NumberOfBullets = 6;
+        NumberOfBullets2 = 6;
         _Death = false;
 
     }
@@ -62,6 +64,7 @@ public class Player2 : MonoBehaviour
     {
         Move();
         Attke();
+        Point();
         _interval -= Time.deltaTime;
     }
 
@@ -86,7 +89,7 @@ public class Player2 : MonoBehaviour
 
     void Attke()
     {
-        if (Input.GetButtonDown("Fire11") && NumberOfBullets >= 1 && _interval <= 0)
+        if (Input.GetButtonDown("shooting 2") && NumberOfBullets2 >= 1 && _interval <= 0)
         {
 
             // 弾丸の複製
@@ -101,19 +104,19 @@ public class Player2 : MonoBehaviour
 
             // 弾丸の位置を調整
             bullets.transform.position = muzzle.position;
-            NumberOfBullets -= 1;
+            NumberOfBullets2 -= 1;
             _interval = 2;
         }
-        else if (Input.GetButtonDown("Fire22"))
+        else if (Input.GetButtonDown("reload2"))
         {
-            NumberOfBullets = 6;
+            NumberOfBullets2 = 6;
             _interval = 4;
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (Input.GetButton("Fire33") && other.gameObject.tag == "Point")
+        if (Input.GetButton("Get2") && other.gameObject.tag == "Point")
         {
             _pointSlider.gameObject.SetActive(true);
             _getTime += Time.deltaTime;
@@ -130,6 +133,17 @@ public class Player2 : MonoBehaviour
             {
                 GameManager.Instance.Winner();//シングルトン（呼び出し用）
             }
+        }
+    }
+    void Point()
+    {
+        if (p == 3)
+        {
+            p3 = true;
+        }
+        else if (p == 4)
+        {
+            p4 = true;
         }
     }
     private void OnTriggerExit(Collider other)

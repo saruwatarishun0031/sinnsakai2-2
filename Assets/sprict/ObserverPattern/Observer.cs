@@ -27,5 +27,5 @@ public class Observer :IObserver<int>
         Console.WriteLine($"{m_name}‚ª{value}‚ðŽó‚¯Žæ‚è‚Ü‚µ‚½");
         GameManager.Instance._Text.text = $"{m_name}‚ªŽc‚è{value}";
     }
-    
+
 }
