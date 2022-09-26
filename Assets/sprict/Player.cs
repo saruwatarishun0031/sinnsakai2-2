@@ -29,6 +29,21 @@ public class Player : MonoBehaviour
     public int NumberOfBullets;
     const int winNum = 5;
     public int p;
+    //シングルトンパターン（簡易型、呼び出される）
+    public static Player Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
+    //シングルトン（ここまで）
 
     void Start()
     {

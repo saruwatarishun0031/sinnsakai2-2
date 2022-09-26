@@ -29,7 +29,22 @@ public class Player2 : MonoBehaviour
     public int NumberOfBullets;
     const int winNum = 5;
     public int p;
-   
+    //シングルトンパターン（簡易型、呼び出される）
+    public static Player2 Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
+    //シングルトン（ここまで）
+
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -102,7 +117,7 @@ public class Player2 : MonoBehaviour
         {
             _pointSlider.gameObject.SetActive(true);
             _getTime += Time.deltaTime;
-            _pointSlider.value = (float)_getTime / (float)_MaxGetTime;
+            _pointSlider.value = _getTime / _MaxGetTime;
             if (_getTime > 5)
             {
                 point1[p].color = new Color(0, 255, 237, 255);

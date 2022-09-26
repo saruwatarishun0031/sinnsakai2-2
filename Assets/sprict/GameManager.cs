@@ -19,14 +19,14 @@ public class GameManager : MonoBehaviour
     Canvas _Win;
     public float s ;
     public int timeOut;
-    GameObject player1;
-    GameObject player2;
-    GameObject player3;
-    GameObject player4;
-    Player Player1;
-    Player2 Player2;
-    Player3 Player3;
-    Player4 Player4;
+    //GameObject player1;
+    //GameObject player2;
+    //GameObject player3;
+    //GameObject player4;
+    //Player Player1;
+    //Player2 Player2;
+    //Player3 Player3;
+    //Player4 Player4;
 
     //シングルトンパターン（簡易型、呼び出される）
     public static GameManager Instance;
@@ -48,14 +48,14 @@ public class GameManager : MonoBehaviour
     {
         startText = startText.GetComponent<Text>();
         _WinPlayer = _WinPlayer.GetComponent<Text>();
-        player1 = GameObject.Find("Player1");
-        Player1 = player1.GetComponent<Player>();
-        player2 = GameObject.Find("Player2");
-        Player2 = player2.GetComponent<Player2>();
-        player3 = GameObject.Find("Player3");
-        Player3 = player3.GetComponent<Player3>();
-        player4 = GameObject.Find("Player4");
-        Player4 = player4.GetComponent<Player4>();
+        //player1 = GameObject.Find("Player1");
+        //Player1 = player1.GetComponent<Player>();
+        //player2 = GameObject.Find("Player2");
+        //Player2 = player2.GetComponent<Player2>();
+        //player3 = GameObject.Find("Player3");
+        //Player3 = player3.GetComponent<Player3>();
+        //player4 = GameObject.Find("Player4");
+        //Player4 = player4.GetComponent<Player4>();
         PlayerList.Add("Player1");
         PlayerList.Add("Player2");
         PlayerList.Add("Player3");
@@ -97,28 +97,52 @@ public class GameManager : MonoBehaviour
         Observer observer4 = new Observer("Player4");
         Observable observable = new Observable();
         IDisposable disposable1 = observable.Subscribe(observer1);
-        if (Player1.p == 3)
+        //if (Player1.p == 3)
+        //{
+        //    observable.SendNotice();
+        //    _Text.enabled = true;
+        //    StartCoroutine(Tuuti());
+        //}
+        if (Player.Instance.p == 3)
         {
             observable.SendNotice();
             _Text.enabled = true;
             StartCoroutine(Tuuti());
         }
         IDisposable disposable2 = observable.Subscribe(observer2);
-        if (Player2.p == 3)
+        //if (Player2.p == 3)
+        //{
+        //    observable.SendNotice();
+        //    _Text.enabled = true;
+        //    StartCoroutine(Tuuti());
+        //}
+        if (Player2.Instance.p == 3)
         {
             observable.SendNotice();
             _Text.enabled = true;
             StartCoroutine(Tuuti());
         }
         IDisposable disposable3 = observable.Subscribe(observer3);
-        if (Player3.p == 3)
+        //if (Player3.p == 3)
+        //{
+        //    observable.SendNotice();
+        //    _Text.enabled = true;
+        //    StartCoroutine(Tuuti());
+        //}
+        if (Player3.Instance.p == 3)
         {
             observable.SendNotice();
             _Text.enabled = true;
             StartCoroutine(Tuuti());
         }
         IDisposable disposable4 = observable.Subscribe(observer4);
-        if (Player4.p == 3)
+        //if (Player4.p == 3)
+        //{
+        //    observable.SendNotice();
+        //    _Text.enabled = true;
+        //    StartCoroutine(Tuuti());
+        //}
+        if (Player4.Instance.p == 3)
         {
             observable.SendNotice();
             _Text.enabled = true;
@@ -130,38 +154,73 @@ public class GameManager : MonoBehaviour
     {
         int PlayerCount = PlayerList.Count;
         Debug.Log(PlayerCount);
-        if (Player1._Death == true)
+        //if (Player1._Death == true)
+        //{
+        //    PlayerList.Remove("Player1");
+        //}
+        //else if (Player2._Death == true)
+        //{
+        //    PlayerList.Remove("Player2");
+        //}
+        //else if (Player3._Death == true)
+        //{
+        //    PlayerList.Remove("Player3");
+        //}
+        //else if (Player4._Death == true)
+        //{
+        //    PlayerList.Remove("Player4");
+        //}
+
+        //if (PlayerCount ==1)
+        //{
+        //    if (Player1._Death == false)
+        //    {
+        //        _WinPlayer.text = "Player1";
+        //    }
+        //    else if (Player2._Death == false)
+        //    {
+        //        _WinPlayer.text = "Player2";
+        //    }
+        //    else if (Player3._Death == false)
+        //    {
+        //        _WinPlayer.text = "Player3";
+        //    }
+        //    else if (Player4._Death == false)
+        //    {
+        //        _WinPlayer.text = "Player4";
+        //    }
+        if (Player.Instance._Death == true)
         {
             PlayerList.Remove("Player1");
         }
-        else if (Player2._Death == true)
+        else if (Player2.Instance._Death == true)
         {
             PlayerList.Remove("Player2");
         }
-        else if (Player3._Death == true)
+        else if (Player3.Instance._Death == true)
         {
             PlayerList.Remove("Player3");
         }
-        else if (Player4._Death == true)
+        else if (Player4.Instance._Death == true)
         {
             PlayerList.Remove("Player4");
         }
 
-        if (PlayerCount ==1)
+        if (PlayerCount == 1)
         {
-            if (Player1._Death == false)
+            if (Player.Instance._Death == false)
             {
                 _WinPlayer.text = "Player1";
             }
-            else if (Player2._Death == false)
+            else if (Player2.Instance._Death == false)
             {
                 _WinPlayer.text = "Player2";
             }
-            else if (Player3._Death == false)
+            else if (Player3.Instance._Death == false)
             {
                 _WinPlayer.text = "Player3";
             }
-            else if (Player4._Death == false)
+            else if (Player4.Instance._Death == false)
             {
                 _WinPlayer.text = "Player4";
             }
@@ -181,6 +240,22 @@ public class GameManager : MonoBehaviour
 
     {
         Debug.Log("勝利");
-        _Win.enabled = true;
+        _Win.gameObject.SetActive(true);
+        if (Player.Instance.p == 5)
+        {
+            _WinPlayer.text = "Player1";
+        }
+        else if (Player2.Instance.p == 5)
+        {
+            _WinPlayer.text = "Player2";
+        }
+        else if (Player3.Instance.p == 5)
+        {
+            _WinPlayer.text = "Player3";
+        }
+        else if (Player4.Instance.p == 5)
+        {
+            _WinPlayer.text = "Player4";
+        }
     }
 }
