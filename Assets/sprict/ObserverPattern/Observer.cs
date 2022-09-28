@@ -28,4 +28,10 @@ public class Observer :IObserver<int>
         GameManager.Instance._Text.text = $"{m_name}‚ªŽc‚è{value}";
     }
 
+    public void OnCheck(int value)
+    {
+        Console.WriteLine($"{m_name}‚ª{value}‚ðŽó‚¯Žæ‚è‚Ü‚µ‚½");
+        GameManager.Instance._Text.text = $"{m_name}‚ªŽc‚è{value}";
+    }
+
 }

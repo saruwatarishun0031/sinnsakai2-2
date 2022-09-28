@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Player4
-    : MonoBehaviour
+public class Player4 : MonoBehaviour
 {
     private Rigidbody _rb;
     [SerializeField, Tooltip("空のイメージ")]
@@ -15,8 +14,8 @@ public class Player4
     GameObject _bullet;
     [SerializeField, Tooltip("ゲットメーター")]
     Slider _pointSlider;
-    [SerializeField, Tooltip("Player1スピード")]
-    int XYspeed;
+    [SerializeField, Tooltip("Player4スピード")]
+    int Speed;
     [SerializeField, Tooltip("Playerの正面")]
     float rayDistance;
     [SerializeField, Tooltip("負け")]
@@ -27,16 +26,18 @@ public class Player4
     Canvas _over;
     [SerializeField, Tooltip("弾数")]
     Text _text;
-    public float _getTime;
-    public float _MaxGetTime;
-    public float speed = 1000;
-    public float _interval = 3;
-    public int NumberOfBullets4;
+    public float GetTime;
+    public float MaxGetTime;
+    public float BulletSpeed = 1000;
+    public float Interval = 3;
+    public int NumberOfBullets;
     const int winNum = 5;
     public int p;
     int i;
     public bool p3;
+    public bool Notification;
     public bool p4;
+    public bool Notification2;
     //シングルトンパターン（簡易型、呼び出される）
     public static Player4 Instance;
 
@@ -58,10 +59,14 @@ public class Player4
         _rb = GetComponent<Rigidbody>();
         point1 = pointParent.GetComponentsInChildren<Image>();
         p = 0;
-        _getTime = 0;
-        NumberOfBullets4 = 6;
-        _Death = false;
+        GetTime = 0;
+        NumberOfBullets = 6;
         i = 6;
+        _Death = false;
+        p3 = false;
+        Notification = true;
+        p4 = false;
+        Notification2 = true;
     }
 
 
@@ -70,11 +75,13 @@ public class Player4
     {
         Move();
         Attke();
-        Point();
-        _interval -= Time.deltaTime;
+        Interval -= Time.deltaTime;
         _text.text = i + "/6";
+        Tuuti();
     }
-
+    /// <summary>
+    /// Player1の動き
+    /// </summary>
     void Move()
     {
 
@@ -90,58 +97,52 @@ public class Player4
         Ray ray = new Ray(rayPosition, direction);
         Debug.DrawRay(rayPosition, direction * rayDistance, Color.red);
         Vector3 directionn = _rb.transform.forward * z + _rb.transform.right * x;
-        directionn *= XYspeed * Time.deltaTime;
+        directionn *= Speed * Time.deltaTime;
         _rb.AddForce(directionn, ForceMode.Impulse);
     }
-
+    /// <summary>
+    /// Player1の攻撃（プレハブを飛ばす）
+    /// </summary>
     void Attke()
     {
-        if (Input.GetButtonDown("shooting 4") && NumberOfBullets4 >= 1 && _interval <= 0)
+        if (Input.GetButtonDown("shooting 4") && NumberOfBullets >= 1 && Interval <= 0)
         {
 
             // 弾丸の複製
-            GameObject bullets = Instantiate(_bullet);
+            GameObject bullets = Instantiate(_bullet) as GameObject;
 
             Vector3 force;
 
-            force = this.gameObject.transform.forward * speed;
+            force = this.gameObject.transform.forward * BulletSpeed;
 
             // Rigidbodyに力を加えて発射
             bullets.GetComponent<Rigidbody>().AddForce(force);
 
             // 弾丸の位置を調整
             bullets.transform.position = muzzle.position;
-            NumberOfBullets4 -= 1;
-            _interval = 2;
+            NumberOfBullets -= 1;
+            Interval = 2;
             i -= 1;
         }
         else if (Input.GetButtonDown("reload4"))
         {
-            NumberOfBullets4 = 6;
-            _interval = 4;
+            NumberOfBullets = 6;
+            Interval = 4;
             i = 6;
         }
     }
-    void Point()
-    {
-        if (p == 3)
-        {
-            p3 = true;
-        }
-        else if (p == 4)
-        {
-            p4 = true;
-        }
-    }
-
+    /// <summary>
+    /// 勝利条件２（ポイントを取るシステム）
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerStay(Collider other)
     {
         if (Input.GetButton("Get4") && other.gameObject.tag == "Point")
         {
             _pointSlider.gameObject.SetActive(true);
-            _getTime += Time.deltaTime;
-            _pointSlider.value = (float)_getTime / (float)_MaxGetTime;
-            if (_getTime > 5)
+            GetTime += Time.deltaTime;
+            _pointSlider.value = (float)GetTime / (float)MaxGetTime;
+            if (GetTime > 5)
             {
                 point1[p].color = new Color(0, 255, 237, 255);
                 p++;
@@ -155,6 +156,10 @@ public class Player4
             }
         }
     }
+    /// <summary>
+    /// オーブから出たらリセット
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Point")
@@ -162,13 +167,19 @@ public class Player4
             reset();
         }
     }
+    /// <summary>
+    /// リセット
+    /// </summary>
     void reset()
     {
-        _getTime = 0;
-        _pointSlider.value = (float)_getTime / (float)_MaxGetTime;
+        GetTime = 0;
+        _pointSlider.value = (float)GetTime / (float)MaxGetTime;
         _pointSlider.gameObject.SetActive(false);
     }
-
+    /// <summary>
+    /// bulletに当たった時の処理
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "bullet")
@@ -177,6 +188,23 @@ public class Player4
         }
     }
 
+    /// <summary>
+    /// 3ポイント以上持っている時に知らせる
+    /// </summary>
+    void Tuuti()
+    {
+        if (p == 3)
+        {
+            p3 = true;
+        }
+        else if (p == 4)
+        {
+            p4 = true;
+        }
+    }
+    /// <summary>
+    /// 負けるシステム
+    /// </summary>
     public void Death()
     {
         gameObject.GetComponent<Player4>().enabled = false;//動いて欲しくない

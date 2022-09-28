@@ -27,6 +27,15 @@ public class Observable : IObservable<int>
         }
        
     }
+    public void OnCheck()
+    {
+        //‚·‚×‚Ä‚Ì”­sæ‚É‘Î‚µ‚Ä1,2,3‚ğ”­s‚·‚é
+        foreach (var observer in m_observers)
+        {
+            observer.OnNext(1);
+        }
+
+    }
 }
  class Unsubscriber : IDisposable
 {
