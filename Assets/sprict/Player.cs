@@ -22,6 +22,10 @@ public class Player : MonoBehaviour
     public bool _Death;
     [SerializeField, Tooltip("銃口")]
     Transform muzzle;
+    [SerializeField, Tooltip("敗北UI")]
+    Canvas _over;
+    [SerializeField, Tooltip("弾数")]
+    Text _text;
     public float _getTime;
     public float _MaxGetTime;
     public float speed = 1000;
@@ -29,6 +33,7 @@ public class Player : MonoBehaviour
     public int NumberOfBullets1;
     const int winNum = 5;
     public int p;
+    int i;
     public bool p3;
     public bool p4;
     //シングルトンパターン（簡易型、呼び出される）
@@ -54,6 +59,7 @@ public class Player : MonoBehaviour
         p = 0;
         _getTime = 0;
         NumberOfBullets1 = 6;
+        i = 6;
         _Death = false;
 
     }
@@ -66,6 +72,7 @@ public class Player : MonoBehaviour
         Attke();
         Point();
         _interval -= Time.deltaTime;
+        _text.text = i + "/6";
     }
     
     void Move()
@@ -106,11 +113,13 @@ public class Player : MonoBehaviour
             bullets.transform.position = muzzle.position;
             NumberOfBullets1 -= 1;
             _interval = 2;
+            i -= 1;
         }
         else if (Input.GetButtonDown("reload1"))
         {
             NumberOfBullets1 = 6;
             _interval = 4;
+            i = 6;
         }
     }
     void Point()
@@ -173,6 +182,7 @@ public class Player : MonoBehaviour
     {
         gameObject.GetComponent<Player>().enabled = false;//動いて欲しくない
         Destroy(gameObject, 1.7f);
+        _over.gameObject.SetActive(true);
         _Death = true;
     }
 }

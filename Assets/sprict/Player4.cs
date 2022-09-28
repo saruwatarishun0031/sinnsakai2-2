@@ -23,6 +23,10 @@ public class Player4
     public bool _Death;
     [SerializeField, Tooltip("銃口")]
     Transform muzzle;
+    [SerializeField, Tooltip("敗北UI")]
+    Canvas _over;
+    [SerializeField, Tooltip("弾数")]
+    Text _text;
     public float _getTime;
     public float _MaxGetTime;
     public float speed = 1000;
@@ -30,6 +34,7 @@ public class Player4
     public int NumberOfBullets4;
     const int winNum = 5;
     public int p;
+    int i;
     public bool p3;
     public bool p4;
     //シングルトンパターン（簡易型、呼び出される）
@@ -56,7 +61,7 @@ public class Player4
         _getTime = 0;
         NumberOfBullets4 = 6;
         _Death = false;
-
+        i = 6;
     }
 
 
@@ -67,6 +72,7 @@ public class Player4
         Attke();
         Point();
         _interval -= Time.deltaTime;
+        _text.text = i + "/6";
     }
 
     void Move()
@@ -107,11 +113,13 @@ public class Player4
             bullets.transform.position = muzzle.position;
             NumberOfBullets4 -= 1;
             _interval = 2;
+            i -= 1;
         }
         else if (Input.GetButtonDown("reload4"))
         {
             NumberOfBullets4 = 6;
             _interval = 4;
+            i = 6;
         }
     }
     void Point()
@@ -173,6 +181,7 @@ public class Player4
     {
         gameObject.GetComponent<Player4>().enabled = false;//動いて欲しくない
         Destroy(gameObject, 1.7f);
+        _over.gameObject.SetActive(true);
         _Death = true;
     }
 }

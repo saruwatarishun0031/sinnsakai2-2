@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
         StartCount();
         notice();
         Main();
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
     }
     public void StartCount()
     { 
@@ -210,19 +210,19 @@ public class GameManager : MonoBehaviour
         {
             if (Player.Instance._Death == false)
             {
-                _WinPlayer.text = "Player1";
+                _WinPlayer.text = "èüé“" + "Player1";
             }
             else if (Player2.Instance._Death == false)
             {
-                _WinPlayer.text = "Player2";
+                _WinPlayer.text = "èüé“" + "Player2";
             }
             else if (Player3.Instance._Death == false)
             {
-                _WinPlayer.text = "Player3";
+                _WinPlayer.text = "èüé“" + "Player3";
             }
             else if (Player4.Instance._Death == false)
             {
-                _WinPlayer.text = "Player4";
+                _WinPlayer.text = "èüé“" + "Player4";
             }
             Winner();
         }
